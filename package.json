@@ -1,0 +1,19 @@
+{
+  "name": "gif-spin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel src/index.html"
+  },
+  "dependencies": {
+    "ascender": "^0.4.0",
+    "autoprefixer": "^9.7.6",
+    "gif.js": "link:../gif.js",
+    "preact": "^10.4.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "postcss-modules": "^2.0.0"
+  }
+}

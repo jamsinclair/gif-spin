@@ -1,0 +1,15 @@
+.DropForm {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1;
+    cursor: pointer;
+    border: 2px dashed #313131;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+}
