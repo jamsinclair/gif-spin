@@ -13,7 +13,17 @@
     "preact": "^10.4.0"
   },
   "devDependencies": {
+    "eslint-config-preact": "^1.1.1",
     "parcel-bundler": "^1.12.4",
-    "postcss-modules": "^2.0.0"
+    "postcss-modules": "^2.0.0",
+    "xo": "^0.29.1"
+  },
+  "xo": {
+    "prettier": true,
+    "extends": "preact",
+    "rules": {
+      "import/extensions": "off",
+      "unicorn/filename-case": "off"
+    }
   }
 }
