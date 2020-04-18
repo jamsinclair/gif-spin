@@ -9,7 +9,7 @@
   "dependencies": {
     "ascender": "^0.4.0",
     "autoprefixer": "^9.7.6",
-    "gif.js": "link:../gif.js",
+    "gif.js": "jamsinclair/gif.js#master",
     "preact": "^10.4.0"
   },
   "devDependencies": {
