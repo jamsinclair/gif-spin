@@ -18,6 +18,9 @@
     "postcss-modules": "^2.0.0",
     "xo": "^0.29.1"
   },
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
   "xo": {
     "prettier": true,
     "extends": "preact",
