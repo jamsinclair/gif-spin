@@ -18,6 +18,7 @@ export default function DropForm({onAddFile}) {
 			instance.on('file:added', onAddFile);
 			setAscenderForm(instance);
 		}
+
 		return () => {
 			if (ascenderForm) {
 				ascenderForm.destroy();
