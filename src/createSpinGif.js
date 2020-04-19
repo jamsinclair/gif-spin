@@ -13,7 +13,7 @@ export default async function createSpinningGif(
 		// Parcel uses file hash in file names
 		// Use this to reference worker file correctly so we can load it
 		// @note will need to update name if the script content updates
-		workerScript: 'gif.worker.ecec0195.js',
+		workerScript: 'gif.worker.b6b68db6.js',
 		quality,
 		differ: 'FloydSteinberg-serpentine'
 	});
