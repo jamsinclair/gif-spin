@@ -4,12 +4,12 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 2.5rem;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex: 1 1;
     cursor: pointer;
-    border: 2px dashed #313131;
+    border: 2px dashed #333333;
     border-radius: 5px;
-    box-sizing: border-box;
     text-align: center;
 }

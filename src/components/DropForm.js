@@ -1,5 +1,5 @@
 import {h} from 'preact';
-import {useState, useEffect, useRef} from 'preact/hooks';
+import {useState, useEffect} from 'preact/hooks';
 import Ascender from 'ascender';
 import styles from './DropForm.css';
 
@@ -9,12 +9,11 @@ const ascenderOptions = {
 	}
 };
 
-export default function DropForm({onAddFile}) {
+export default function DropForm({children, onAddFile}) {
 	const [ascenderForm, setAscenderForm] = useState(null);
-	const formRef = useRef(null);
 	useEffect(() => {
-		if (!ascenderForm && formRef.current) {
-			const instance = new Ascender(formRef.current, ascenderOptions);
+		if (!ascenderForm) {
+			const instance = new Ascender(document.body, ascenderOptions);
 			instance.on('file:added', onAddFile);
 			setAscenderForm(instance);
 		}
@@ -28,8 +27,8 @@ export default function DropForm({onAddFile}) {
 	}, [onAddFile, ascenderForm]);
 
 	return (
-		<form class={styles.DropForm} ref={formRef}>
-			I am a form
+		<form class={styles.DropForm}>
+			{children}
 		</form>
 	);
 }

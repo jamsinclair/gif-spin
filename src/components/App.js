@@ -79,7 +79,10 @@ export default function App() {
 							.getDataUri()
 							.then((payload) => dispatch({type: 'setImageSource', payload}))
 					}
-				/>
+				>
+					<h2>Create rotating, spinning, twirling GIFs right in your browser!</h2>
+					<p class={styles.AppText}>Drag 'n' drop your image on the page or <span class={styles.underline}>click to browse and select.</span></p>
+				</DropForm>
 			)}
 			{(gifSource || loading) && <Preview src={gifSource} loading={loading} />}
 			{imageSource && (
