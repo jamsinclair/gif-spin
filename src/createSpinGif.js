@@ -10,6 +10,9 @@ export default async function createSpinningGif(
 	const gif = new GIF({
 		transparent: '#000',
 		workers: 2,
+		// Parcel uses file hash in file names
+		// Use this to reference worker file correctly so we can load it
+		// @note will need to update name if the script content updates
 		workerScript: 'gif.worker.ecec0195.js',
 		quality
 	});
