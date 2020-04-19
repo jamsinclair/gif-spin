@@ -98,6 +98,9 @@ export default function App() {
 					/>
 				)}
 			</main>
+			<footer class={styles.AppFooter}>
+				Hacked together at <a href="https://github.com/jamsinclair/gif-spin" onClick={event => event.stopPropagation()}>github.com/jamsinclair/gif-spin</a>
+			</footer>
 		</div>
 	);
 }

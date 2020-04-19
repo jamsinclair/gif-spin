@@ -29,6 +29,11 @@ body {
     font-size: 20px;
 }
 
+.AppFooter {
+    padding: 20px;
+    text-align: center;
+}
+
 .underline {
     cursor: pointer;
     text-decoration: underline;
