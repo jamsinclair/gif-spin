@@ -14,7 +14,8 @@ export default async function createSpinningGif(
 		// Use this to reference worker file correctly so we can load it
 		// @note will need to update name if the script content updates
 		workerScript: 'gif.worker.ecec0195.js',
-		quality
+		quality,
+		differ: 'FloydSteinberg-serpentine'
 	});
 
 	const delay = duration / fps;
