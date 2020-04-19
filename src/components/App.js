@@ -18,6 +18,8 @@ function reducer(state, action) {
 			return {...state, imageSource: action.payload};
 		case 'setQuality':
 			return {...state, quality: action.payload};
+		case 'setLoading':
+			return {...state, loading: action.payload};
 		case 'reset':
 			return {...initialState};
 		default:
@@ -30,16 +32,18 @@ const initialState = {
 	fps: 14,
 	gifSource: null,
 	imageSource: null,
+	loading: false,
 	quality: 10
 };
 
 export default function App() {
 	const [state, dispatch] = useReducer(reducer, initialState);
-	const {duration, fps, gifSource, imageSource, quality} = state;
+	const {duration, fps, gifSource, imageSource, loading, quality} = state;
 
 	useEffect(() => {
 		let abortGif = () => {};
 		const handleCreateSpinGif = async () => {
+			dispatch({type: 'setLoading', payload: true });
 			const {abort, result} = await createSpinGif(
 				imageSource,
 				duration,
@@ -52,6 +56,7 @@ export default function App() {
 				dispatch({type: 'setGifSource', payload});
 			} finally {
 				abortGif = () => {};
+				dispatch({type: 'setLoading', payload: false });
 			}
 		};
 
@@ -76,7 +81,7 @@ export default function App() {
 					}
 				/>
 			)}
-			{gifSource && <Preview src={gifSource} />}
+			{(gifSource || loading) && <Preview src={gifSource} loading={loading} />}
 			{imageSource && (
 				<Controls
 					duration={duration}
