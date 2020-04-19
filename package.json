@@ -5,7 +5,9 @@
   "license": "MIT",
   "scripts": {
     "build": "parcel build src/index.html",
-    "dev": "parcel src/index.html"
+    "dev": "parcel src/index.html",
+    "format": "xo --fix",
+    "lint": "xo"
   },
   "dependencies": {
     "ascender": "^0.4.0",
