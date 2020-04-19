@@ -9,6 +9,7 @@
   "dependencies": {
     "ascender": "^0.4.0",
     "autoprefixer": "^9.7.6",
+    "file-saver": "^2.0.2",
     "gif.js": "jamsinclair/gif.js#master",
     "preact": "^10.4.0"
   },

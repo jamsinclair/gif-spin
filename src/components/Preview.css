@@ -1,13 +1,14 @@
 .Preview {
     display: flex;
-    width: 100%;
+    min-height: 200px;
+    max-height: 500px;
+    height: 30vw;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 1rem auto;
     padding: 2.5rem;
     justify-content: center;
     align-items: center;
     flex: 1 1;
-    cursor: pointer;
     border: 2px solid #313131;
     border-radius: 5px;
     box-sizing: border-box;
@@ -16,5 +17,5 @@
 
 .PreviewImage {
     max-width: 100%;
-    height: auto;
+    max-height: 100%;
 }

@@ -3,15 +3,15 @@ import rotateImage from './rotateImage';
 
 export default async function createSpinningGif(
 	src,
-	duration = 2000,
-	fps = 14
+	duration,
+	fps,
+	quality = 10
 ) {
-	console.time('createSpinningGif');
 	const gif = new GIF({
 		transparent: '#000',
-		quality: 10,
 		workers: 2,
-		workerScript: 'gif.worker.ecec0195.js'
+		workerScript: 'gif.worker.ecec0195.js',
+		quality
 	});
 
 	const delay = duration / fps;
@@ -28,11 +28,18 @@ export default async function createSpinningGif(
 		gif.addFrame(imageCtx, {copy: true, delay});
 	}
 
-	return new Promise((resolve) => {
+	const result = new Promise((resolve, reject) => {
+		gif.on('abort', function () {
+			reject(new Error('Gif creation aborted'));
+		});
 		gif.on('finished', function (blob) {
-			console.timeEnd('createSpinningGif');
 			resolve(URL.createObjectURL(blob));
 		});
 		gif.render();
 	});
+
+	return {
+		abort: () => gif.abort(),
+		result
+	};
 }
