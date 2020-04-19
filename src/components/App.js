@@ -74,28 +74,30 @@ export default function App() {
 			<header>
 				<h1>GIF Spin</h1>
 			</header>
-			{!imageSource && (
-				<DropForm
-					onAddFile={(file) =>
-						file
-							.getDataUri()
-							.then((payload) => dispatch({type: 'setImageSource', payload}))
-					}
-				>
-					<h2>Create rotating, spinning, twirling GIFs right in your browser!</h2>
-					<p class={styles.AppText}>Drag 'n' drop your image on the page or <span class={styles.underline}>click to browse and select.</span></p>
-				</DropForm>
-			)}
-			{(gifSource || loading) && <Preview src={gifSource} loading={loading} />}
-			{imageSource && (
-				<Controls
-					duration={duration}
-					fps={fps}
-					gifSource={gifSource}
-					quality={quality}
-					dispatch={dispatch}
-				/>
-			)}
+			<main>
+				{!imageSource && (
+					<DropForm
+						onAddFile={(file) =>
+							file
+								.getDataUri()
+								.then((payload) => dispatch({type: 'setImageSource', payload}))
+						}
+					>
+						<h2>Create rotating, spinning, twirling GIFs right in your browser!</h2>
+						<p class={styles.AppText}>Drag 'n' drop your image on the page or <span class={styles.underline}>click to browse and select.</span></p>
+					</DropForm>
+				)}
+				{(gifSource || loading) && <Preview src={gifSource} loading={loading} />}
+				{imageSource && (
+					<Controls
+						duration={duration}
+						fps={fps}
+						gifSource={gifSource}
+						quality={quality}
+						dispatch={dispatch}
+					/>
+				)}
+			</main>
 		</div>
 	);
 }
