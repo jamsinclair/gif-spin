@@ -26,9 +26,5 @@ export default function DropForm({children, onAddFile}) {
 		};
 	}, [onAddFile, ascenderForm]);
 
-	return (
-		<form class={styles.DropForm}>
-			{children}
-		</form>
-	);
+	return <form class={styles.DropForm}>{children}</form>;
 }

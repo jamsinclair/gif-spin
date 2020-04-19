@@ -43,7 +43,7 @@ export default function App() {
 	useEffect(() => {
 		let abortGif = () => {};
 		const handleCreateSpinGif = async () => {
-			dispatch({type: 'setLoading', payload: true });
+			dispatch({type: 'setLoading', payload: true});
 			const {abort, result} = await createSpinGif(
 				imageSource,
 				duration,
@@ -56,7 +56,7 @@ export default function App() {
 				dispatch({type: 'setGifSource', payload});
 			} finally {
 				abortGif = () => {};
-				dispatch({type: 'setLoading', payload: false });
+				dispatch({type: 'setLoading', payload: false});
 			}
 		};
 
@@ -83,11 +83,18 @@ export default function App() {
 								.then((payload) => dispatch({type: 'setImageSource', payload}))
 						}
 					>
-						<h2>Create rotating, spinning, twirling GIFs right in your browser!</h2>
-						<p class={styles.AppText}>Drag 'n' drop your image on the page or <span class={styles.underline}>click to browse and select.</span></p>
+						<h2>
+							Create rotating, spinning, twirling GIFs right in your browser!
+						</h2>
+						<p class={styles.AppText}>
+							Drag 'n' drop your image on the page or{' '}
+							<span class={styles.underline}>click to browse and select.</span>
+						</p>
 					</DropForm>
 				)}
-				{(gifSource || loading) && <Preview src={gifSource} loading={loading} />}
+				{(gifSource || loading) && (
+					<Preview src={gifSource} loading={loading} />
+				)}
 				{imageSource && (
 					<Controls
 						duration={duration}
@@ -99,7 +106,13 @@ export default function App() {
 				)}
 			</main>
 			<footer class={styles.AppFooter}>
-				Hacked together at <a href="https://github.com/jamsinclair/gif-spin" onClick={event => event.stopPropagation()}>github.com/jamsinclair/gif-spin</a>
+				Hacked together at{' '}
+				<a
+					href="https://github.com/jamsinclair/gif-spin"
+					onClick={(event) => event.stopPropagation()}
+				>
+					github.com/jamsinclair/gif-spin
+				</a>
 			</footer>
 		</div>
 	);
