@@ -71,7 +71,9 @@ export default function App() {
 
 	return (
 		<div class={styles.App}>
-			<h1>GIF Spin</h1>
+			<header>
+				<h1>GIF Spin</h1>
+			</header>
 			{!imageSource && (
 				<DropForm
 					onAddFile={(file) =>
