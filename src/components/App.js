@@ -55,13 +55,12 @@ export default function App() {
 		let abortGif = () => {};
 		const handleCreateSpinGif = async () => {
 			dispatch({type: 'setLoading', payload: true});
-			const {abort, result} = await createSpinGif(
-				imageSource,
+			const {abort, result} = await createSpinGif(imageSource, {
 				duration,
 				fps,
 				quality,
 				showFullImage
-			);
+			});
 			abortGif = abort;
 			try {
 				const payload = await result;

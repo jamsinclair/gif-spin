@@ -3,10 +3,7 @@ import rotateImage from './rotateImage';
 
 export default async function createSpinningGif(
 	src,
-	duration,
-	fps,
-	quality = 10,
-	showFullImage
+	{duration = 1500, fps = 14, quality = 10, showFullImage}
 ) {
 	const gif = new GIF({
 		transparent: '#000',
