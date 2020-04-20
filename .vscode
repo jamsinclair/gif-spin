@@ -1,0 +1,6 @@
+{
+  "xo.format.enable": true,
+  "xo.enable": true,
+  "editor.formatOnSave": true,
+  "eslint.enable": false
+}

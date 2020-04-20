@@ -11,6 +11,7 @@ export default function Controls({
 	gifSource,
 	quality,
 	showFullImage,
+	showAntiClockwise,
 	dispatch
 }) {
 	return (
@@ -20,7 +21,12 @@ export default function Controls({
 					label={`Show Full Image`}
 					value={showFullImage}
 					onChange={(payload) => dispatch({type: 'setShowFullImage', payload})}
-				/>
+        />
+				<Checkbox
+					label={`Reverse direction`}
+					value={showAntiClockwise}
+					onChange={(payload) => dispatch({type: 'setShowAntiClockwise', payload})}
+        />
 				<NumberRange
 					label={`Spin Duration: ${duration}ms`}
 					min={200}
