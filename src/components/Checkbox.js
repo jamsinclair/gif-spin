@@ -8,8 +8,8 @@ export default function Checkbox({label, value, onChange}) {
 				type="checkbox"
 				checked={value}
 				onChange={(event) => {
-          onChange(event.target.checked)
-        }}
+					onChange(event.target.checked);
+				}}
 			/>
 			{label}
 		</label>
