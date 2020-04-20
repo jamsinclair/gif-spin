@@ -22,6 +22,8 @@ function reducer(state, action) {
 			return {...state, loading: action.payload};
 		case 'setShowFullImage':
 			return {...state, showFullImage: action.payload};
+		case 'setShowAntiClockwise':
+			return {...state, showAntiClockwise: action.payload};
 		case 'reset':
 			return {...initialState};
 		default:
@@ -36,7 +38,8 @@ const initialState = {
 	imageSource: null,
 	loading: false,
 	quality: 10,
-	showFullImage: true
+	showFullImage: true,
+	showAntiClockwise: false
 };
 
 export default function App() {
@@ -48,7 +51,8 @@ export default function App() {
 		imageSource,
 		loading,
 		quality,
-		showFullImage
+		showFullImage,
+		showAntiClockwise
 	} = state;
 
 	useEffect(() => {
@@ -59,7 +63,8 @@ export default function App() {
 				duration,
 				fps,
 				quality,
-				showFullImage
+				showFullImage,
+				showAntiClockwise
 			});
 			abortGif = abort;
 			try {
@@ -78,7 +83,7 @@ export default function App() {
 		return () => {
 			abortGif();
 		};
-	}, [imageSource, duration, fps, quality, showFullImage]);
+	}, [imageSource, duration, fps, quality, showFullImage, showAntiClockwise]);
 
 	return (
 		<div class={styles.App}>
