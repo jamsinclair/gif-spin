@@ -5,7 +5,8 @@ export default async function createSpinningGif(
 	src,
 	duration,
 	fps,
-	quality = 10
+	quality = 10,
+	showFullImage
 ) {
 	const gif = new GIF({
 		transparent: '#000',
@@ -23,7 +24,7 @@ export default async function createSpinningGif(
 	for (let i = 0; i < frames; i++) {
 		const rotation = ((i + 1) / frames) * 360;
 		// eslint-disable-next-line no-await-in-loop
-		const imageCtx = await rotateImage(src, rotation);
+		const imageCtx = await rotateImage(src, rotation, showFullImage);
 		if (!gif.options.width || !gif.options.height) {
 			gif.options.width = imageCtx.canvas.width;
 			gif.options.height = imageCtx.canvas.height;

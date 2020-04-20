@@ -20,6 +20,8 @@ function reducer(state, action) {
 			return {...state, quality: action.payload};
 		case 'setLoading':
 			return {...state, loading: action.payload};
+		case 'setShowFullImage':
+			return {...state, showFullImage: action.payload};
 		case 'reset':
 			return {...initialState};
 		default:
@@ -33,12 +35,21 @@ const initialState = {
 	gifSource: null,
 	imageSource: null,
 	loading: false,
-	quality: 10
+	quality: 10,
+	showFullImage: true
 };
 
 export default function App() {
 	const [state, dispatch] = useReducer(reducer, initialState);
-	const {duration, fps, gifSource, imageSource, loading, quality} = state;
+	const {
+		duration,
+		fps,
+		gifSource,
+		imageSource,
+		loading,
+		quality,
+		showFullImage
+	} = state;
 
 	useEffect(() => {
 		let abortGif = () => {};
@@ -48,7 +59,8 @@ export default function App() {
 				imageSource,
 				duration,
 				fps,
-				quality
+				quality,
+				showFullImage
 			);
 			abortGif = abort;
 			try {
@@ -67,7 +79,7 @@ export default function App() {
 		return () => {
 			abortGif();
 		};
-	}, [imageSource, duration, fps, quality]);
+	}, [imageSource, duration, fps, quality, showFullImage]);
 
 	return (
 		<div class={styles.App}>
@@ -101,6 +113,7 @@ export default function App() {
 						fps={fps}
 						gifSource={gifSource}
 						quality={quality}
+						showFullImage={showFullImage}
 						dispatch={dispatch}
 					/>
 				)}

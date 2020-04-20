@@ -3,17 +3,24 @@ import {saveAs} from 'file-saver';
 import Button from './Button';
 import NumberRange from './NumberRange';
 import styles from './Controls.css';
+import Checkbox from './Checkbox';
 
 export default function Controls({
 	duration,
 	fps,
 	gifSource,
 	quality,
+	showFullImage,
 	dispatch
 }) {
 	return (
 		<div class={styles.Controls}>
 			<div class={styles.ControlsLeft}>
+				<Checkbox
+					label={`Show Full Image`}
+					value={showFullImage}
+					onChange={(payload) => dispatch({type: 'setShowFullImage', payload})}
+				/>
 				<NumberRange
 					label={`Spin Duration: ${duration}ms`}
 					min={200}
