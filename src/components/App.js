@@ -51,8 +51,8 @@ export default function App() {
 		imageSource,
 		loading,
 		quality,
-    showFullImage,
-    showAntiClockwise
+		showFullImage,
+		showAntiClockwise
 	} = state;
 
 	useEffect(() => {
@@ -63,8 +63,8 @@ export default function App() {
 				duration,
 				fps,
 				quality,
-        showFullImage,
-        showAntiClockwise
+				showFullImage,
+				showAntiClockwise
 			});
 			abortGif = abort;
 			try {
