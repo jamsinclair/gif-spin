@@ -19,20 +19,34 @@ function clearCanvas(ctx) {
 	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
 
-function drawRotatedImageCenter(image, degrees) {
+function calculateHypotenuse(a, b) {
+	return Math.sqrt(a ** 2 + b ** 2);
+}
+
+function drawRotatedImageCenter(image, degrees, showFullImage) {
 	const {width, height} = image;
-	canvas.width = width;
-	canvas.height = height;
-	ctx.setTransform(1, 0, 0, 1, width / 2, height / 2);
+	const canvasWidth = showFullImage
+		? calculateHypotenuse(width, height)
+		: width;
+	const canvasHeight = showFullImage
+		? calculateHypotenuse(width, height)
+		: height;
+	canvas.width = canvasWidth;
+	canvas.height = canvasHeight;
+	ctx.setTransform(1, 0, 0, 1, canvasWidth / 2, canvasHeight / 2);
 	ctx.rotate(toRadians(degrees));
 	ctx.drawImage(image, -width / 2, -height / 2);
 }
 
-export default async function createRotatedImageContext(src, degrees) {
+export default async function createRotatedImageContext(
+	src,
+	degrees,
+	showFullImage
+) {
 	canvas = document.createElement('canvas');
 	ctx = canvas.getContext('2d');
 	clearCanvas(ctx);
 	const image = await createImage(src);
-	drawRotatedImageCenter(image, degrees);
+	drawRotatedImageCenter(image, degrees, showFullImage);
 	return ctx;
 }
