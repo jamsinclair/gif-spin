@@ -1,6 +1,11 @@
 import GIF from 'gif.js/dist/gif';
 import rotateImage from './rotateImage';
 
+const workerScript = {
+	production: 'gif.worker.b6b68db6.js',
+	development: 'gif.worker.ecec0195.js'
+};
+
 export default async function createSpinningGif(
 	src,
 	{duration = 1500, fps = 14, quality = 10, showFullImage, showAntiClockwise}
@@ -11,7 +16,7 @@ export default async function createSpinningGif(
 		// Parcel uses file hash in file names
 		// Use this to reference worker file correctly so we can load it
 		// @note will need to update name if the script content updates
-		workerScript: 'gif.worker.ecec0195.js',
+		workerScript: workerScript[process.env.NODE_ENV || 'development'],
 		quality,
 		differ: 'FloydSteinberg-serpentine'
 	});
