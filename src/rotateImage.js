@@ -2,30 +2,35 @@ let canvas;
 let ctx;
 
 function toRadians(degrees) {
-  return degrees * (Math.PI / 180);
+	return degrees * (Math.PI / 180);
 }
 
 function createImage(src) {
-  const img = new Image();
-  img.src = src;
-  return new Promise((resolve, reject) => {
-    img.addEventListener("load", () => resolve(img));
-    img.addEventListener("error", reject);
-  });
+	const img = new Image();
+	img.src = src;
+	return new Promise((resolve, reject) => {
+		img.addEventListener('load', () => resolve(img));
+		img.addEventListener('error', reject);
+	});
 }
 
 function clearCanvas(ctx) {
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+	ctx.setTransform(1, 0, 0, 1, 0, 0);
+	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 }
 
 function calculateHypotenuse(a, b) {
 	return Math.sqrt(a ** 2 + b ** 2);
 }
 
-function drawRotatedImageCenter(image, degrees, showFullImage, showAntiClockwise) {
-  const {width, height} = image;
-  const directionMultiplier = showAntiClockwise ? -1 : 1;
+function drawRotatedImageCenter(
+	image,
+	degrees,
+	showFullImage,
+	showAntiClockwise
+) {
+	const {width, height} = image;
+	const directionMultiplier = showAntiClockwise ? -1 : 1;
 	const canvasWidth = showFullImage
 		? calculateHypotenuse(width, height)
 		: width;
@@ -42,8 +47,8 @@ function drawRotatedImageCenter(image, degrees, showFullImage, showAntiClockwise
 export default async function createRotatedImageContext(
 	src,
 	degrees,
-  showFullImage,
-  showAntiClockwise
+	showFullImage,
+	showAntiClockwise
 ) {
 	canvas = document.createElement('canvas');
 	ctx = canvas.getContext('2d');
