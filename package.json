@@ -10,7 +10,7 @@
     "lint": "xo"
   },
   "dependencies": {
-    "ascender": "^0.4.0",
+    "ascender": "^0.5.0",
     "autoprefixer": "^9.7.6",
     "file-saver": "^2.0.2",
     "gif.js": "jamsinclair/gif.js#master",

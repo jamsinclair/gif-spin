@@ -1,5 +1,6 @@
 import {h} from 'preact';
 import {useEffect, useReducer} from 'preact/hooks';
+import {createDataUri} from 'ascender';
 import DropForm from './DropForm';
 import Preview from './Preview';
 import Controls from './Controls';
@@ -94,9 +95,9 @@ export default function App() {
 				{!imageSource && (
 					<DropForm
 						onAddFile={(file) =>
-							file
-								.getDataUri()
-								.then((payload) => dispatch({type: 'setImageSource', payload}))
+							createDataUri(file).then((payload) =>
+								dispatch({type: 'setImageSource', payload})
+							)
 						}
 					>
 						<h2>

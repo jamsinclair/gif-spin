@@ -1,20 +1,18 @@
 import {h} from 'preact';
 import {useState, useEffect} from 'preact/hooks';
-import Ascender from 'ascender';
+import {DropZone} from 'ascender';
 import styles from './DropForm.css';
-
-const ascenderOptions = {
-	dropArea: {
-		multipleFiles: false
-	}
-};
 
 export default function DropForm({children, onAddFile}) {
 	const [ascenderForm, setAscenderForm] = useState(null);
 	useEffect(() => {
 		if (!ascenderForm) {
-			const instance = new Ascender(document.body, ascenderOptions);
-			instance.on('file:added', onAddFile);
+			// eslint-disable-next-line new-cap
+			const instance = DropZone(document.body, {
+				accept: 'image/jpeg,image/png,image/gif',
+				multiple: false
+			});
+			instance.on('fileadded', onAddFile);
 			setAscenderForm(instance);
 		}
 
