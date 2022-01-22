@@ -1,4 +1,3 @@
-import {h} from 'preact';
 import styles from './NumberRange.css';
 
 export default function NumberRange({label, min, max, step, value, onChange}) {

@@ -1,4 +1,3 @@
-import {h} from 'preact';
 import {useState, useEffect} from 'preact/hooks';
 import {DropZone} from 'ascender';
 import styles from './DropForm.css';
@@ -10,7 +9,7 @@ export default function DropForm({children, onAddFile}) {
 			// eslint-disable-next-line new-cap
 			const instance = DropZone(document.body, {
 				accept: 'image/jpeg,image/png,image/gif',
-				multiple: false
+				multiple: false,
 			});
 			instance.on('fileadded', onAddFile);
 			setAscenderForm(instance);

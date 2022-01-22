@@ -1,4 +1,3 @@
-import {h} from 'preact';
 import {saveAs} from 'file-saver';
 import Button from './Button';
 import NumberRange from './NumberRange';
@@ -12,7 +11,7 @@ export default function Controls({
 	quality,
 	showFullImage,
 	showAntiClockwise,
-	dispatch
+	dispatch,
 }) {
 	return (
 		<div class={styles.Controls}>

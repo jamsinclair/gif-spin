@@ -1,24 +1,21 @@
-import GIF from 'gif.js/dist/gif';
-import rotateImage from './rotateImage';
+import GIF from 'gif.js/dist/gif.js';
+import rotateImage from './rotateImage.js';
 
-const workerScript = {
-	production: 'gif.worker.b6b68db6.js',
-	development: 'gif.worker.ecec0195.js'
-};
+const workerScript = new URL(
+	'../node_modules/gif.js/dist/gif.worker.js',
+	import.meta.url,
+);
 
 export default async function createSpinningGif(
 	src,
-	{duration = 1500, fps = 14, quality = 10, showFullImage, showAntiClockwise}
+	{duration = 1500, fps = 14, quality = 10, showFullImage, showAntiClockwise},
 ) {
 	const gif = new GIF({
 		transparent: '#000',
 		workers: 2,
-		// Parcel uses file hash in file names
-		// Use this to reference worker file correctly so we can load it
-		// @note will need to update name if the script content updates
-		workerScript: workerScript[process.env.NODE_ENV || 'development'],
+		workerScript,
 		quality,
-		differ: 'FloydSteinberg-serpentine'
+		differ: 'FloydSteinberg-serpentine',
 	});
 
 	const delay = duration / fps;
@@ -30,7 +27,7 @@ export default async function createSpinningGif(
 			src,
 			rotation,
 			showFullImage,
-			showAntiClockwise
+			showAntiClockwise,
 		);
 		if (!gif.options.width || !gif.options.height) {
 			gif.options.width = imageCtx.canvas.width;
@@ -52,6 +49,6 @@ export default async function createSpinningGif(
 
 	return {
 		abort: () => gif.abort(),
-		result
+		result,
 	};
 }

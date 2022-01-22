@@ -1,10 +1,9 @@
-import {h} from 'preact';
 import {useEffect, useReducer} from 'preact/hooks';
 import {createDataUri} from 'ascender';
+import createSpinGif from '../createSpinGif.js';
 import DropForm from './DropForm';
 import Preview from './Preview';
 import Controls from './Controls';
-import createSpinGif from '../createSpinGif';
 import styles from './App.css';
 
 function reducer(state, action) {
@@ -40,7 +39,7 @@ const initialState = {
 	loading: false,
 	quality: 10,
 	showFullImage: true,
-	showAntiClockwise: false
+	showAntiClockwise: false,
 };
 
 export default function App() {
@@ -53,7 +52,7 @@ export default function App() {
 		loading,
 		quality,
 		showFullImage,
-		showAntiClockwise
+		showAntiClockwise,
 	} = state;
 
 	useEffect(() => {
@@ -65,7 +64,7 @@ export default function App() {
 				fps,
 				quality,
 				showFullImage,
-				showAntiClockwise
+				showAntiClockwise,
 			});
 			abortGif = abort;
 			try {
@@ -96,7 +95,7 @@ export default function App() {
 					<DropForm
 						onAddFile={(file) =>
 							createDataUri(file).then((payload) =>
-								dispatch({type: 'setImageSource', payload})
+								dispatch({type: 'setImageSource', payload}),
 							)
 						}
 					>

@@ -27,7 +27,7 @@ function drawRotatedImageCenter(
 	image,
 	degrees,
 	showFullImage,
-	showAntiClockwise
+	showAntiClockwise,
 ) {
 	const {width, height} = image;
 	const directionMultiplier = showAntiClockwise ? -1 : 1;
@@ -48,7 +48,7 @@ export default async function createRotatedImageContext(
 	src,
 	degrees,
 	showFullImage,
-	showAntiClockwise
+	showAntiClockwise,
 ) {
 	canvas = document.createElement('canvas');
 	ctx = canvas.getContext('2d');

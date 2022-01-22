@@ -1,4 +1,3 @@
-import {h} from 'preact';
 import styles from './Checkbox.css';
 
 export default function Checkbox({label, value, onChange}) {

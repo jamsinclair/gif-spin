@@ -1,6 +1,6 @@
-import {h} from 'preact';
 import styles from './Preview.css';
-import spinner from '../spinner.gif';
+
+const spinner = new URL('../spinner.gif', import.meta.url);
 
 export default function Preview({src, loading}) {
 	return (
