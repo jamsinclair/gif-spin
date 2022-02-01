@@ -7,6 +7,7 @@
       name="description"
       content="Create rotating, spinning, twirling GIFs from your browser! Perfect for fun slack emojis."
     />
+    <link rel="modulepreload" href="./encode.worker.js">
     <title>Gif Spin</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap"
@@ -15,6 +16,5 @@
   </head>
   <body>
     <script type="module" src="./index.js"></script>
-    <script src="../node_modules/gif.js/dist/gif.worker.js"></script>
   </body>
 </html>

@@ -1,27 +1,23 @@
-import GIF from 'gif.js/dist/gif.js';
+import encodeGif from './encode.js';
 import rotateImage from './rotateImage.js';
 
-const workerScript = new URL(
-	'../node_modules/gif.js/dist/gif.worker.js',
-	import.meta.url,
-);
+function blobToBase64(blob) {
+	return new Promise((resolve) => {
+		const reader = new FileReader();
+		reader.onloadend = () => resolve(reader.result);
+		reader.readAsDataURL(blob);
+	});
+}
 
 export default async function createSpinningGif(
 	src,
 	{duration = 1500, fps = 14, quality = 10, showFullImage, showAntiClockwise},
 ) {
-	const gif = new GIF({
-		transparent: '#000',
-		workers: 2,
-		workerScript,
-		quality,
-		differ: 'FloydSteinberg-serpentine',
-	});
+	const frames = [];
 
-	const delay = duration / fps;
-	const frames = Math.round((duration / 1000) * fps);
-	for (let i = 0; i < frames; i++) {
-		const rotation = ((i + 1) / frames) * 360;
+	const numberOfFrames = Math.round((duration / 1000) * fps);
+	for (let i = 0; i < numberOfFrames; i++) {
+		const rotation = ((i + 1) / numberOfFrames) * 360;
 		// eslint-disable-next-line no-await-in-loop
 		const imageCtx = await rotateImage(
 			src,
@@ -29,26 +25,32 @@ export default async function createSpinningGif(
 			showFullImage,
 			showAntiClockwise,
 		);
-		if (!gif.options.width || !gif.options.height) {
-			gif.options.width = imageCtx.canvas.width;
-			gif.options.height = imageCtx.canvas.height;
-		}
 
-		gif.addFrame(imageCtx, {copy: true, delay});
+		frames.push(
+			imageCtx.getImageData(
+				0,
+				0,
+				imageCtx.canvas.width,
+				imageCtx.canvas.height,
+			),
+		);
 	}
 
-	const result = new Promise((resolve, reject) => {
-		gif.on('abort', function () {
-			reject(new Error('Gif creation aborted'));
-		});
-		gif.on('finished', function (blob) {
-			resolve(URL.createObjectURL(blob));
-		});
-		gif.render();
+	const {promise, abort} = await encodeGif({
+		frames,
+		width: frames[0].width,
+		height: frames[0].height,
+		fps,
+		quality,
+	});
+
+	const result = promise.then((data) => {
+		const imageBlob = new Blob([data], {type: `image/gif`});
+		return blobToBase64(imageBlob);
 	});
 
 	return {
-		abort: () => gif.abort(),
+		abort,
 		result,
 	};
 }

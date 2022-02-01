@@ -2909,9 +2909,10 @@ get-symbol-description@^1.0.0:
     call-bind "^1.0.2"
     get-intrinsic "^1.1.1"
 
-gif.js@jamsinclair/gif.js#master:
-  version "0.2.0"
-  resolved "https://codeload.github.com/jamsinclair/gif.js/tar.gz/abf6ca89320d09950366e64669041b9ad03cbbe7"
+gifski-wasm@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/gifski-wasm/-/gifski-wasm-1.0.1.tgz#e6fedeb05a62b562628d9c1b41ea48b069893a07"
+  integrity sha512-kxuGAJQjpFxjGfF4mM4VgvpvzVqjE0gjDdeY3smrJ7zJ2Zqam0eE55rOjzvS4Evdbv3ftJnI0c5vtGvktfRaoQ==
 
 glob-parent@^5.1.0, glob-parent@^5.1.2:
   version "5.1.2"
