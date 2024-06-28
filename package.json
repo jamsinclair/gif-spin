@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && cp _headers dist",
     "dev": "vite",
     "format": "xo --fix",
     "lint": "xo"
