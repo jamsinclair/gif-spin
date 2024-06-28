@@ -1,8 +1,8 @@
-import {useState, useEffect} from 'preact/hooks';
-import {DropZone} from 'ascender';
-import styles from './DropForm.css';
+import { useState, useEffect } from 'preact/hooks';
+import { DropZone } from 'ascender';
+import * as styles from './DropForm.module.css';
 
-export default function DropForm({children, onAddFile}) {
+export default function DropForm({ children, onAddFile }) {
 	const [ascenderForm, setAscenderForm] = useState(null);
 	useEffect(() => {
 		if (!ascenderForm) {

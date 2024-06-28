@@ -1,31 +1,31 @@
-import {useEffect, useReducer} from 'preact/hooks';
-import {createDataUri} from 'ascender';
+import { useEffect, useReducer } from 'preact/hooks';
+import { createDataUri } from 'ascender';
 import createSpinGif from '../createSpinGif.js';
 import DropForm from './DropForm';
 import Preview from './Preview';
 import Controls from './Controls';
-import styles from './App.css';
+import * as styles from './App.module.css';
 
 function reducer(state, action) {
 	switch (action.type) {
 		case 'setDuration':
-			return {...state, duration: action.payload};
+			return { ...state, duration: action.payload };
 		case 'setFps':
-			return {...state, fps: action.payload};
+			return { ...state, fps: action.payload };
 		case 'setGifSource':
-			return {...state, gifSource: action.payload};
+			return { ...state, gifSource: action.payload };
 		case 'setImageSource':
-			return {...state, imageSource: action.payload};
+			return { ...state, imageSource: action.payload };
 		case 'setQuality':
-			return {...state, quality: action.payload};
+			return { ...state, quality: action.payload };
 		case 'setLoading':
-			return {...state, loading: action.payload};
+			return { ...state, loading: action.payload };
 		case 'setShowFullImage':
-			return {...state, showFullImage: action.payload};
+			return { ...state, showFullImage: action.payload };
 		case 'setShowAntiClockwise':
-			return {...state, showAntiClockwise: action.payload};
+			return { ...state, showAntiClockwise: action.payload };
 		case 'reset':
-			return {...initialState};
+			return { ...initialState };
 		default:
 			throw new Error(`Unknown action type ${action.type}`);
 	}
@@ -37,7 +37,7 @@ const initialState = {
 	gifSource: null,
 	imageSource: null,
 	loading: false,
-	quality: 10,
+	quality: 60,
 	showFullImage: true,
 	showAntiClockwise: false,
 };
@@ -56,10 +56,10 @@ export default function App() {
 	} = state;
 
 	useEffect(() => {
-		let abortGif = () => {};
+		let abortGif = () => { };
 		const handleCreateSpinGif = async () => {
-			dispatch({type: 'setLoading', payload: true});
-			const {abort, result} = await createSpinGif(imageSource, {
+			dispatch({ type: 'setLoading', payload: true });
+			const { abort, result } = await createSpinGif(imageSource, {
 				duration,
 				fps,
 				quality,
@@ -69,10 +69,10 @@ export default function App() {
 			abortGif = abort;
 			try {
 				const payload = await result;
-				dispatch({type: 'setGifSource', payload});
+				dispatch({ type: 'setGifSource', payload });
 			} finally {
-				abortGif = () => {};
-				dispatch({type: 'setLoading', payload: false});
+				abortGif = () => { };
+				dispatch({ type: 'setLoading', payload: false });
 			}
 		};
 
@@ -95,7 +95,7 @@ export default function App() {
 					<DropForm
 						onAddFile={(file) =>
 							createDataUri(file).then((payload) =>
-								dispatch({type: 'setImageSource', payload}),
+								dispatch({ type: 'setImageSource', payload }),
 							)
 						}
 					>

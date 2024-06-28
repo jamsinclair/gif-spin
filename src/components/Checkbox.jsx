@@ -1,6 +1,6 @@
-import styles from './Checkbox.css';
+import * as styles from './Checkbox.module.css';
 
-export default function Checkbox({label, value, onChange}) {
+export default function Checkbox({ label, value, onChange }) {
 	return (
 		<label class={styles.Checkbox}>
 			<input

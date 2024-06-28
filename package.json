@@ -3,23 +3,22 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "build": "parcel build src/index.html",
-    "dev": "parcel src/index.html",
+    "build": "vite build",
+    "dev": "vite",
     "format": "xo --fix",
     "lint": "xo"
   },
   "dependencies": {
     "ascender": "^0.5.0",
-    "autoprefixer": "^10.4.2",
     "file-saver": "^2.0.5",
-    "gifski-wasm": "^1.0.1",
-    "preact": "^10.6.4"
+    "gifski-wasm": "^2.0.2",
+    "preact": "^10.22.0"
   },
   "devDependencies": {
-    "eslint-config-preact": "^1.3.0",
-    "parcel": "^2.2.1",
-    "postcss-modules": "^4.3.0",
-    "xo": "^0.47.0"
+    "@preact/preset-vite": "^2.8.2",
+    "eslint-config-preact": "^1.4.0",
+    "vite": "^5.0.0",
+    "xo": "^0.58.0"
   },
   "browserslist": [
     "last 1 Chrome version"

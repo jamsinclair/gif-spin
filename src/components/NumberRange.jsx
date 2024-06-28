@@ -1,6 +1,6 @@
-import styles from './NumberRange.css';
+import * as styles from './NumberRange.module.css';
 
-export default function NumberRange({label, min, max, step, value, onChange}) {
+export default function NumberRange({ label, min, max, step, value, onChange }) {
 	return (
 		<label class={styles.NumberRange}>
 			<div class="label">{label}</div>

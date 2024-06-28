@@ -1,7 +1,5 @@
-const worker = new URL('./encode.worker.js', import.meta.url);
-
 export default async function encodeGif(options) {
-	const myWorker = new Worker(worker, {type: 'module'});
+	const myWorker = new Worker(new URL('./encode.worker.js', import.meta.url), { type: 'module' });
 
 	myWorker.postMessage(options);
 

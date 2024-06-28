@@ -11,7 +11,7 @@ function blobToBase64(blob) {
 
 export default async function createSpinningGif(
 	src,
-	{duration = 1500, fps = 14, quality = 10, showFullImage, showAntiClockwise},
+	{ duration = 1500, fps = 14, quality = 60, showFullImage, showAntiClockwise },
 ) {
 	const frames = [];
 
@@ -36,7 +36,7 @@ export default async function createSpinningGif(
 		);
 	}
 
-	const {promise, abort} = await encodeGif({
+	const { promise, abort } = await encodeGif({
 		frames,
 		width: frames[0].width,
 		height: frames[0].height,
@@ -45,7 +45,7 @@ export default async function createSpinningGif(
 	});
 
 	const result = promise.then((data) => {
-		const imageBlob = new Blob([data], {type: `image/gif`});
+		const imageBlob = new Blob([data], { type: `image/gif` });
 		return blobToBase64(imageBlob);
 	});
 
